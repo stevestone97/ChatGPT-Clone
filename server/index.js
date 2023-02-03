@@ -1,11 +1,12 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+require("dotenv").config();
 
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-  organization: "org-QcQnATeESDMsM01rPtNREneQ",
-  apiKey: "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", // env
+  organization: process.env.OPENAI_ORG,
+  apiKey: process.env.OPENAI_API_KEY, // env
 });
 
 const openai = new OpenAIApi(configuration);
@@ -16,7 +17,7 @@ app.use(cors());
 
 const port = 3080;
 
-app.post("/", async (req, res) => {
+app.post("/api", async (req, res) => {
   const { message } = req.body;
   console.log(message);
   const response = await openai.createCompletion({
@@ -31,5 +32,5 @@ app.post("/", async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`listing on port ${port}`)
+  console.log(`listing on port ${port}`);
 });
