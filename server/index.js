@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const { Configuration, OpenAIApi } = require("openai");
@@ -29,6 +30,12 @@ app.post("/api", async (req, res) => {
   res.json({
     message: response.data.choices[0].text,
   });
+});
+
+app.use("/static", express.static(path.join(__dirname, "../www/build/static")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../www/build/index.html"));
 });
 
 app.listen(port, () => {
