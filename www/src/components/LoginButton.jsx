@@ -19,7 +19,6 @@ const LoginButton = () => {
         bg={true}
       />
       <div className="signInCard">
-        <img src={AIImage} alt="AIImage" className="loginImage" />
         <h3 className="txtLight">Modern Technology and innovation</h3>
         <TypeAnimation
           sequence={[

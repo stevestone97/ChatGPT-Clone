@@ -11,6 +11,9 @@ import Form from "./components/Form";
 function App() {
   const { user, isAuthenticated } = useAuth0();
   const [input, setInput] = useState("");
+  const [model, setModel] = useState("text-davinci-003");
+  const [tempreture, setTempreture] = useState(0.9);
+  const [maxTokens, setMaxTokens] = useState(140);
   const [chatLog, setChatLog] = useState([]);
   const [lightMode, setLightMode] = useState(true);
 
@@ -36,7 +39,10 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        model: model,
         message: messages,
+        tempreture: tempreture,
+        maxTokens: maxTokens
       }),
     });
 
@@ -61,16 +67,19 @@ function App() {
             : { backgroundColor: "#282c34" }
         }
       >
-        <aside className="sidemenu">
-          <div className="side-menu-button">
-            <span>+</span> New Chat
-          </div>
-          <StaticSection
-            setChatLog={setChatLog}
-            changeTheme={changeTheme}
-            lightMode={lightMode}
-          />
-        </aside>
+        <StaticSection
+          setChatLog={setChatLog}
+          changeTheme={changeTheme}
+          lightMode={lightMode}
+
+          tempreture={tempreture}
+          setTempreture={setTempreture}
+          maxTokens={maxTokens}
+          setMaxTokens={setMaxTokens}
+
+          Model={model}
+          setModel={setModel}
+        />
         <section
           className="chatBox"
           style={

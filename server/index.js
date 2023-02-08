@@ -19,13 +19,16 @@ app.use(cors());
 const port = 3080;
 
 app.post("/api", async (req, res) => {
-  const { message } = req.body;
-  console.log(message);
+  const { message, model, tempreture, maxTokens } = req.body;
+  console.log(
+    message,
+    //"Model:", model
+  );
   const response = await openai.createCompletion({
-    model: "text-davinci-003", // Drop menu
+    model: `${model}`, // Drop menu
     prompt: `${message}`,
-    max_tokens: 250,
-    temperature: 0.5,
+    max_tokens: maxTokens,
+    temperature: tempreture,
   });
   res.json({
     message: response.data.choices[0].text,
