@@ -71,6 +71,7 @@ function App() {
           setChatLog={setChatLog}
           changeTheme={changeTheme}
           lightMode={lightMode}
+          user={user}
 
           tempreture={tempreture}
           setTempreture={setTempreture}

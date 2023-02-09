@@ -3,19 +3,17 @@ import "../App.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-
 
 export default function StaticSection({
   setChatLog,
   changeTheme,
   lightMode,
-  tempreture,
-  setTempreture,
-  maxTokens,
-  setMaxTokens,
-  Model, setModel }) {
+  tempreture, setTempreture,
+  maxTokens, setMaxTokens,
+  Model, setModel,
+  user }) {
 
   const { isAuthenticated, logout } = useAuth0();
   const handelLogout = () => {
@@ -30,6 +28,11 @@ export default function StaticSection({
 
   return (
     <aside className="sidemenu">
+      <div className="side-menu-user">
+        <img className="side-menu-user-avatar" src={user.picture} alt="avatar" />
+        <p className="side-menu-user-user">{user.name}</p>
+      </div>
+
       <div className="side-menu-button">
         <span>+</span> New Chat
       </div>
